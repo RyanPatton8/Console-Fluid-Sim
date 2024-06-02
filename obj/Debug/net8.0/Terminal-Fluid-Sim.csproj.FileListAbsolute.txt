@@ -1,0 +1,14 @@
+D:\Personal Projects\Terminal-Fluid-Sim\bin\Debug\net8.0\Terminal-Fluid-Sim.exe
+D:\Personal Projects\Terminal-Fluid-Sim\bin\Debug\net8.0\Terminal-Fluid-Sim.deps.json
+D:\Personal Projects\Terminal-Fluid-Sim\bin\Debug\net8.0\Terminal-Fluid-Sim.runtimeconfig.json
+D:\Personal Projects\Terminal-Fluid-Sim\bin\Debug\net8.0\Terminal-Fluid-Sim.dll
+D:\Personal Projects\Terminal-Fluid-Sim\bin\Debug\net8.0\Terminal-Fluid-Sim.pdb
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.AssemblyInfoInputs.cache
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.AssemblyInfo.cs
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.csproj.CoreCompileInputs.cache
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.dll
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\refint\Terminal-Fluid-Sim.dll
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.pdb
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.genruntimeconfig.cache
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\ref\Terminal-Fluid-Sim.dll
