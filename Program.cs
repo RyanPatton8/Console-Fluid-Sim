@@ -10,7 +10,7 @@ class Program
     static char[,] grid = {{},{}};
     //water variables
     static char water = '0';
-    static int waterAmount = 8;
+    static int waterAmount = 20;
     
     static void Main(string[] args)
     {
@@ -28,6 +28,10 @@ class Program
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
+                }else if((j == height - 2 ||j == height - 3) && (i == 7 || i == 15)){
+                    Console.SetCursorPosition(i,j);
+                    Console.Write('-');
+                    grid[i,j] = '-';
                 } else {
                     Console.SetCursorPosition(i,j);
                     Console.Write(' ');
@@ -37,15 +41,14 @@ class Program
             }
         }
 
+
         Simulate();
     }
 
     static void Simulate()
     {
         while (true)
-        {
-            //potentially make terminal height responsive?
-            
+        {   
             //pour water from the top of terminal one water at a time until amount set is empty
             if (waterAmount > 0)
             {
@@ -64,8 +67,8 @@ class Program
                     //if it is choose the next move for that water
                     if (grid[i,j] == water) {
                         //if there is space below the water go there
-                        //detect bottom of terminal
-                        if (grid[i, j + 1] == ' ') {
+                        if (grid[i, j + 1] == ' ') 
+                        {
                             Console.SetCursorPosition(i, j + 1);
                             Console.Write(water);
                             grid[i, j + 1] = water;
@@ -73,8 +76,55 @@ class Program
                             Console.SetCursorPosition(i, j);
                             Console.Write(' ');
                             grid[i, j] = ' ';
+                        } 
+                        //if there is space both ways choose a random one between them
+                        else if(grid[i - 1,j] == ' ' && grid[i + 1, j] == ' ')
+                        {
+                            Random random = new Random();
+                            int decision = random.Next();
+                            if(decision > 0 && decision % 2 == 0) 
+                            {
+                                Console.SetCursorPosition(i + 1, j);
+                                Console.Write(water);
+                                grid[i + 1, j] = water;
+
+                                Console.SetCursorPosition(i, j);
+                                Console.Write(' ');
+                                grid[i, j] = ' ';
+                            } 
+                            else 
+                            {
+                                Console.SetCursorPosition(i - 1, j);
+                                Console.Write(water);
+                                grid[i - 1, j] = water;
+
+                                Console.SetCursorPosition(i, j);
+                                Console.Write(' ');
+                                grid[i, j] = ' ';
+                            }
                         }
-                        //provide move random left or right functionality
+                        // if you can go left go left
+                        else if (grid[i - 1,j] == ' ')
+                        {
+                            Console.SetCursorPosition(i - 1, j);
+                            Console.Write(water);
+                            grid[i - 1, j] = water;
+
+                            Console.SetCursorPosition(i, j);
+                            Console.Write(' ');
+                            grid[i, j] = ' ';
+                        }
+                        // if you can go right go right
+                        else if (grid[i + 1, j] == ' ')
+                        {
+                            Console.SetCursorPosition(i + 1, j);
+                            Console.Write(water);
+                            grid[i + 1, j] = water;
+
+                            Console.SetCursorPosition(i, j);
+                            Console.Write(' ');
+                            grid[i, j] = ' ';
+                        }
                     }
                 }
             }
