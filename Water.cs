@@ -5,35 +5,78 @@ class Water
     //how we will represent the water
     public char character = '0';
     //we will use this to check if the water has not been adjacent to another water for a set amount of time and delete it
-    int lifeTime = 3;
+    private int lifeTime = 20;
+    private int maxLifeTime = 20;
+    private bool alive = true;
 
     public int positionX = 13;
-    public int positionY = 13;
+    public int positionY = 2;
 
-    //functionality to be added
-    //will add all move functionality
-    public string Move(char below, char left, char right)
+    //takes in the characters around itself and makes a decision on what to do
+    public string Move(char below, char left, char right, char bLeft, char bRight, char above)
     {
-        if(below == ' '){
-            return "below";
-        } 
-        else if (left == ' ' && right == ' ') {
-            Random rand = new Random();
-            if(rand.Next(0, 2) == 0) {
+        if (CheckLifeTime()) {
+            //vertical
+            if(below == ' '){
+                return "below";
+            }
+            //diagonal
+            else if (bLeft == ' ' && bRight == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 2) == 1) {
+                    return "bottomLeft";
+                } 
+                else {
+                    return "bottomRight";
+                }
+            }
+            else if (bLeft == ' '){
+                return "bottomLeft";
+            } 
+            else if (bRight == ' ') {
+                return "bottomRight";
+            }   
+            // horizontal
+            else if (left == ' ' && right == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 2) == 1) {
+                    return "left";
+                } 
+                else {
+                    return "right";
+                }
+            }
+            else if (left == ' '){
+                if(above != '0' && below != '0'){
+                    lifeTime --;
+                }else {
+                    lifeTime = maxLifeTime;
+                }
                 return "left";
             } 
-            else {
+            else if (right == ' ') {
+                if(above != '0' && below != '0'){
+                    lifeTime --;
+                }else {
+                    lifeTime = maxLifeTime;
+                }
                 return "right";
             }
-        } 
-        else if (left == ' '){
-            return "left";
-        } 
-        else if (right == ' ') {
-            return "right";
-        } 
-        else {
-            return "stay";
+            //none 
+            else {
+                return "stay";
+            }
         }
+        
+        return "dead";
+    }
+
+    private Boolean CheckLifeTime()
+    {
+        if (lifeTime == 0) {
+            character = ' ';
+            return false;
+        }
+        return true;
     }
 }

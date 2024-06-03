@@ -9,7 +9,7 @@ class Program
     //create matrix board
     static char[,] grid = {{},{}};
     //water variables
-    static int waterAmount = 50;
+    static int waterAmount = 150;
     static List<Object> waterList = new List<Object>();
 
     static void Main(string[] args)
@@ -28,16 +28,19 @@ class Program
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
+                }else if (i == width - 2 || i == 0) {
+                    Console.SetCursorPosition(i,j);
+                    Console.Write('-');
+                    grid[i,j] = '-';
                 }else if((j == height - 2 ||j == height - 3) && (i == 5 || i == 25)){
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
-                } else {
+                }else {
                     Console.SetCursorPosition(i,j);
                     Console.Write(' ');
                     grid[i,j] = ' ';
-                }
-                
+                } 
             }
         }
 
@@ -57,7 +60,10 @@ class Program
             foreach (Water water in waterList){
                 string direction = water.Move(grid[water.positionX, water.positionY + 1], 
                                               grid[water.positionX - 1, water.positionY], 
-                                              grid[water.positionX + 1, water.positionY]);
+                                              grid[water.positionX + 1, water.positionY],
+                                              grid[water.positionX - 1, water.positionY + 1],
+                                              grid[water.positionX + 1, water.positionY + 1],
+                                              grid[water.positionX, water.positionY - 1]);
 
                 if (direction == "below"){
                     Console.SetCursorPosition(water.positionX, water.positionY + 1);
@@ -68,6 +74,30 @@ class Program
                     Console.Write(' ');
                     grid[water.positionX, water.positionY] = ' ';
 
+                    water.positionY ++;
+                }
+                else if (direction == "bottomLeft"){
+                    Console.SetCursorPosition(water.positionX - 1, water.positionY + 1);
+                    Console.Write(water.character);
+                    grid[water.positionX - 1, water.positionY + 1] = water.character;
+
+                    Console.SetCursorPosition(water.positionX, water.positionY);
+                    Console.Write(' ');
+                    grid[water.positionX, water.positionY] = ' ';
+
+                    water.positionX --;
+                    water.positionY ++;
+                }
+                else if (direction == "bottomRight"){
+                    Console.SetCursorPosition(water.positionX + 1, water.positionY + 1);
+                    Console.Write(water.character);
+                    grid[water.positionX + 1, water.positionY + 1] = water.character;
+
+                    Console.SetCursorPosition(water.positionX, water.positionY);
+                    Console.Write(' ');
+                    grid[water.positionX, water.positionY] = ' ';
+
+                    water.positionX ++;
                     water.positionY ++;
                 }
                 else if (direction == "left"){
@@ -92,9 +122,14 @@ class Program
 
                     water.positionX ++;
                 }
+                else if (direction == "dead"){
+                    Console.SetCursorPosition(water.positionX, water.positionY);
+                    Console.Write(water.character);
+                    grid[water.positionX, water.positionY] = ' ';
+                }
             }
 
-            Thread.Sleep(100);  
+            Thread.Sleep(50);  
         }
     }
 }

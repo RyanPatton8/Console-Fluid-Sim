@@ -12,3 +12,4 @@ D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\refint\Terminal-Fluid-S
 D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.pdb
 D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.genruntimeconfig.cache
 D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\ref\Terminal-Fluid-Sim.dll
+D:\Personal Projects\Terminal-Fluid-Sim\obj\Debug\net8.0\Terminal-Fluid-Sim.sourcelink.json
