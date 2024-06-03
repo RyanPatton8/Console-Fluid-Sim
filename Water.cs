@@ -15,7 +15,9 @@ class Water
     //takes in the characters around itself and makes a decision on what to do
     public string Move(char below, char left, char right, char bLeft, char bRight, char above)
     {
-        if (CheckLifeTime()) {
+        CheckLifeTime();
+
+        if (alive) {
             //vertical
             if(below == ' '){
                 return "below";
@@ -71,12 +73,15 @@ class Water
         return "dead";
     }
 
-    private Boolean CheckLifeTime()
+    private void CheckLifeTime()
     {
-        if (lifeTime == 0) {
+        if (lifeTime == 0 && alive == true) {
             character = ' ';
-            return false;
+            Console.SetCursorPosition(positionX, positionY);
+            Console.Write(character);
+            Program.grid[positionX, positionY] = ' ';
+            alive = false;
         }
-        return true;
+        alive = true;
     }
 }

@@ -7,7 +7,7 @@ class Program
     static int width; 
     static int height;
     //create matrix board
-    static char[,] grid = {{},{}};
+    static public char[,] grid = {{},{}};
     //water variables
     static int waterAmount = 150;
     static List<Object> waterList = new List<Object>();
