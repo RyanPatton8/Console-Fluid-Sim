@@ -9,9 +9,9 @@ class Program
     //create matrix board
     static char[,] grid = {{},{}};
     //water variables
-    static char water = '0';
-    static int waterAmount = 20;
-    
+    static int waterAmount = 50;
+    static List<Object> waterList = new List<Object>();
+
     static void Main(string[] args)
     {
         width = Console.WindowWidth;
@@ -28,7 +28,7 @@ class Program
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
-                }else if((j == height - 2 ||j == height - 3) && (i == 7 || i == 15)){
+                }else if((j == height - 2 ||j == height - 3) && (i == 5 || i == 25)){
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
@@ -41,91 +41,56 @@ class Program
             }
         }
 
-
         Simulate();
     }
 
-    static void Simulate()
+    public static void Simulate()
     {
+        // create a list of instantiated water objects
+        for(int i = waterAmount; i > 0; i--){
+            Water water = new Water();
+            waterList.Add(water);
+        }
+
         while (true)
-        {   
-            //pour water from the top of terminal one water at a time until amount set is empty
-            if (waterAmount > 0)
-            {
-                Console.SetCursorPosition(10,2);
-                Console.Write(water);
-                grid[10,2] = water;
-                waterAmount--; 
-            }
-            
+        {   // for everyone of them check their position and update it
+            foreach (Water water in waterList){
+                string direction = water.Move(grid[water.positionX, water.positionY + 1], 
+                                              grid[water.positionX - 1, water.positionY], 
+                                              grid[water.positionX + 1, water.positionY]);
 
-            //loop through all spaces in terminal to check if current space is water
-            for (int i = width - 1; i > 1; i--)
-            {
-                for (int j = height - 1; j > 1; j--)
-                {
-                    //if it is choose the next move for that water
-                    if (grid[i,j] == water) {
-                        //if there is space below the water go there
-                        if (grid[i, j + 1] == ' ') 
-                        {
-                            Console.SetCursorPosition(i, j + 1);
-                            Console.Write(water);
-                            grid[i, j + 1] = water;
+                if (direction == "below"){
+                    Console.SetCursorPosition(water.positionX, water.positionY + 1);
+                    Console.Write(water.character);
+                    grid[water.positionX, water.positionY + 1] = water.character;
 
-                            Console.SetCursorPosition(i, j);
-                            Console.Write(' ');
-                            grid[i, j] = ' ';
-                        } 
-                        //if there is space both ways choose a random one between them
-                        else if(grid[i - 1,j] == ' ' && grid[i + 1, j] == ' ')
-                        {
-                            Random random = new Random();
-                            int decision = random.Next();
-                            if(decision > 0 && decision % 2 == 0) 
-                            {
-                                Console.SetCursorPosition(i + 1, j);
-                                Console.Write(water);
-                                grid[i + 1, j] = water;
+                    Console.SetCursorPosition(water.positionX, water.positionY);
+                    Console.Write(' ');
+                    grid[water.positionX, water.positionY] = ' ';
 
-                                Console.SetCursorPosition(i, j);
-                                Console.Write(' ');
-                                grid[i, j] = ' ';
-                            } 
-                            else 
-                            {
-                                Console.SetCursorPosition(i - 1, j);
-                                Console.Write(water);
-                                grid[i - 1, j] = water;
+                    water.positionY ++;
+                }
+                else if (direction == "left"){
+                    Console.SetCursorPosition(water.positionX - 1, water.positionY);
+                    Console.Write(water.character);
+                    grid[water.positionX - 1, water.positionY] = water.character;
 
-                                Console.SetCursorPosition(i, j);
-                                Console.Write(' ');
-                                grid[i, j] = ' ';
-                            }
-                        }
-                        // if you can go left go left
-                        else if (grid[i - 1,j] == ' ')
-                        {
-                            Console.SetCursorPosition(i - 1, j);
-                            Console.Write(water);
-                            grid[i - 1, j] = water;
+                    Console.SetCursorPosition(water.positionX, water.positionY);
+                    Console.Write(' ');
+                    grid[water.positionX, water.positionY] = ' ';
 
-                            Console.SetCursorPosition(i, j);
-                            Console.Write(' ');
-                            grid[i, j] = ' ';
-                        }
-                        // if you can go right go right
-                        else if (grid[i + 1, j] == ' ')
-                        {
-                            Console.SetCursorPosition(i + 1, j);
-                            Console.Write(water);
-                            grid[i + 1, j] = water;
+                    water.positionX --;
+                }
+                else if (direction == "right"){
+                    Console.SetCursorPosition(water.positionX + 1, water.positionY);
+                    Console.Write(water.character);
+                    grid[water.positionX + 1, water.positionY] = water.character;
 
-                            Console.SetCursorPosition(i, j);
-                            Console.Write(' ');
-                            grid[i, j] = ' ';
-                        }
-                    }
+                    Console.SetCursorPosition(water.positionX, water.positionY);
+                    Console.Write(' ');
+                    grid[water.positionX, water.positionY] = ' ';
+
+                    water.positionX ++;
                 }
             }
 
