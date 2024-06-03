@@ -122,11 +122,6 @@ class Program
 
                     water.positionX ++;
                 }
-                else if (direction == "dead"){
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(water.character);
-                    grid[water.positionX, water.positionY] = ' ';
-                }
             }
 
             Thread.Sleep(50);  

@@ -20,6 +20,7 @@ class Water
         if (alive) {
             //vertical
             if(below == ' '){
+                lifeTime = maxLifeTime;
                 return "below";
             }
             //diagonal
@@ -51,16 +52,12 @@ class Water
             else if (left == ' '){
                 if(above != '0' && below != '0'){
                     lifeTime --;
-                }else {
-                    lifeTime = maxLifeTime;
                 }
                 return "left";
             } 
             else if (right == ' ') {
                 if(above != '0' && below != '0'){
                     lifeTime --;
-                }else {
-                    lifeTime = maxLifeTime;
                 }
                 return "right";
             }
@@ -82,6 +79,5 @@ class Water
             Program.grid[positionX, positionY] = ' ';
             alive = false;
         }
-        alive = true;
     }
 }
