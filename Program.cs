@@ -9,8 +9,8 @@ class Program
     //create a matrix to keep track of all characters in terminal
     static public char[,] grid = {{},{}};
     //water variables
-    static public int waterAmount = 2000;//how much water to drop
-    static private int waterSpeed = 2;//how long it should wait to loop (effectively how fast the water moves)
+    static public int waterAmount = 1000;//how much water to drop
+    static private int waterSpeed = 3;//how long it should wait to loop (effectively how fast the water moves)
     static public List<Object> waterList = new List<Object>();//list to hold and loop through all instances of water
 
     public static void Simulate()
