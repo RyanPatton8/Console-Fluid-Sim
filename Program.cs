@@ -9,8 +9,8 @@ class Program
     //create matrix board
     static public char[,] grid = {{},{}};
     //water variables
-    static int waterAmount = 150;
-    static List<Object> waterList = new List<Object>();
+    static int waterAmount = 250;
+    static public List<Object> waterList = new List<Object>();
 
     static void Main(string[] args)
     {
@@ -32,7 +32,7 @@ class Program
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
-                }else if((j == height - 2 ||j == height - 3) && (i == 5 || i == 25)){
+                }else if((j == height - 2 ||j == height - 3 ||j == height - 4) && (i == 35 || i == 85)){
                     Console.SetCursorPosition(i,j);
                     Console.Write('-');
                     grid[i,j] = '-';
