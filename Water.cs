@@ -18,8 +18,45 @@ class Water
     {
         // stop them moving when appropriate
         if(extraMoves > 0){
+            if (below == ' ' && bLeft == ' ' && bRight == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 3) == 0) {
+                    extraMoves = maxExtraMoves;
+                    return "below";
+                } 
+                else if (rand.Next(0, 3) == 1){
+                    extraMoves = maxExtraMoves;              
+                    return "bottomLeft";
+                }
+                else if (rand.Next(0, 3) == 2){
+                    extraMoves = maxExtraMoves;              
+                    return "bottomRight";
+                }
+            }
+            else if (below == ' ' && bLeft == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 2) == 1) {
+                    extraMoves = maxExtraMoves;
+                    return "below";
+                } 
+                else {
+                    extraMoves = maxExtraMoves;              
+                    return "bottomLeft";
+                }
+            }
+            else if (below == ' ' && bRight == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 2) == 1) {
+                    extraMoves = maxExtraMoves;
+                    return "below";
+                } 
+                else {
+                    extraMoves = maxExtraMoves;
+                    return "bottomRight";
+                }
+            }
             //vertical
-            if(below == ' '){
+            else if(below == ' '){
                 extraMoves = maxExtraMoves;
                 return "below";
             }

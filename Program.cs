@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading;
 
+
+// break the water into lists of 100
+// loop through each list
 class Program
 {
     //width and height of terminal
@@ -10,17 +13,11 @@ class Program
     static public char[,] grid = {{},{}};
     //water variables
     static public int waterAmount = 1000;//how much water to drop
-    static private int waterSpeed = 3;//how long it should wait to loop (effectively how fast the water moves)
+    static private int waterSpeed = 0;//how long it should wait to loop (effectively how fast the water moves)
     static public List<Object> waterList = new List<Object>();//list to hold and loop through all instances of water
 
     public static void Simulate()
     {
-        // create a list of instantiated water objects
-        for(int i = waterAmount; i > 0; i--){
-            Water water = new Water();
-            waterList.Add(water);
-        }
-
         while (true)
         {   // for every drop of water check adjacent tiles and move accordingly replacing previous placement with a blank tile
             foreach (Water water in waterList){
@@ -99,6 +96,13 @@ class Program
             Thread.Sleep(waterSpeed);  
         }
     }
+    static private void SetFlowRate()
+    {
+        int potentialRate = 30 - (waterAmount / 100);
+        if(potentialRate > 0){
+            waterSpeed = potentialRate;
+        }
+    }
 
     static void Main(string[] args)
     {
@@ -132,15 +136,22 @@ class Program
             }
         }
 
-        for (int i = 1; i < 10; i++){
-            Console.SetCursorPosition(44 + i,10 + i);
+        for (int i = 1; i < 14; i++){
+            Console.SetCursorPosition(40 + i,11 + i);
             Console.Write('-');
-            grid[44+ i,10 + i] = '-';
-            Console.SetCursorPosition(45 + i,10 + i);
+            grid[40 + i,11 + i] = '-';
+            Console.SetCursorPosition(41 + i,11 + i);
             Console.Write('-');
-            grid[45+ i,10 + i] = '-';
+            grid[41 + i,11 + i] = '-';
         }
 
+        // create a list of instantiated water objects
+        for(int i = waterAmount; i > 0; i--){
+            Water water = new Water();
+            waterList.Add(water);
+        }
+
+        SetFlowRate();
         Simulate();
     }
 }
