@@ -4,56 +4,72 @@ class Water
 {
     //how we will represent the water
     public char character = '0';
-    //we will use this to check if the water has not been adjacent to another water for a set amount of time and delete it
-    private bool alive = true;
-
+    //store waters global position
     public int positionX = 50;
     public int positionY = 2;
+    //store last move to continue same direction
+    private string previousMove = "none";
+    //how many moves the water can make before stopping is decided by the amount of water being poured
+    private int extraMoves = Program.waterAmount / 8;
+    private int maxExtraMoves = Program.waterAmount / 8;
 
     //takes in the characters around itself and makes a decision on what to do
     public string Move(char below, char left, char right, char bLeft, char bRight, char above)
     {
-        // instead of killing them make them keep momentum
-        
-        //vertical
-        if(below == ' '){
-            return "below";
-        }
-        //diagonal
-        else if (bLeft == ' ' && bRight == ' ') {
-            Random rand = new Random();
-            if(rand.Next(0, 2) == 1) {
+        // stop them moving when appropriate
+        if(extraMoves > 0){
+            //vertical
+            if(below == ' '){
+                extraMoves = maxExtraMoves;
+                return "below";
+            }
+            //diagonal
+            else if (bLeft == ' ' && bRight == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 2) == 1) {
+                    extraMoves = maxExtraMoves;
+                    return "bottomLeft";
+                } 
+                else {
+                    extraMoves = maxExtraMoves;
+                    return "bottomRight";
+                }
+            }
+            else if (bLeft == ' '){
+                extraMoves = maxExtraMoves;
                 return "bottomLeft";
             } 
-            else {
+            else if (bRight == ' ') {
+                extraMoves = maxExtraMoves;
                 return "bottomRight";
+            }   
+            //horizontal
+            else if (left == ' ' && right == ' ') {
+                Random rand = new Random();
+                if(rand.Next(0, 2) == 1) {
+                    return "left";
+                } 
+                else {
+                    return "right";
+                }
             }
-        }
-        else if (bLeft == ' '){
-            return "bottomLeft";
-        } 
-        else if (bRight == ' ') {
-            return "bottomRight";
-        }   
-        // horizontal
-        else if (left == ' ' && right == ' ') {
-            Random rand = new Random();
-            if(rand.Next(0, 2) == 1) {
+            else if (left == ' '){
                 return "left";
             } 
-            else {
+            else if (right == ' ') {
                 return "right";
             }
         }
-        else if (left == ' '){
-            return "left";
-        } 
-        else if (right == ' ') {
-            return "right";
+        //if when it has stopped it is a single character make it blank to make it look a bit cleaner and allow other water to move in its place
+        else if(left == ' ' && right == ' ') {
+            character = ' ';
         }
-        //none 
-        else {
-            return "stay";
+        //if it can move down bring allow movement again
+        else if (below == ' ' || bLeft == ' ' || bRight == ' '){
+            extraMoves = maxExtraMoves;
+            character = '0';
         }
+            
+        return "stay";   
     }
 }
