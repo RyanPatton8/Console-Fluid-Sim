@@ -25,8 +25,7 @@ class Program
                                               grid[water.positionX - 1, water.positionY], 
                                               grid[water.positionX + 1, water.positionY],
                                               grid[water.positionX - 1, water.positionY + 1],
-                                              grid[water.positionX + 1, water.positionY + 1],
-                                              grid[water.positionX, water.positionY - 1]);
+                                              grid[water.positionX + 1, water.positionY + 1]);
 
                 if (direction == "below"){
                     Console.SetCursorPosition(water.positionX, water.positionY + 1);
@@ -84,12 +83,6 @@ class Program
                     grid[water.positionX, water.positionY] = ' ';
 
                     water.positionX ++;
-                }
-                //keeps water where it is mostly comes into play when water stops moving and needs to be a blank tile
-                else if(direction == "stay"){
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(water.character);
-                    grid[water.positionX, water.positionY] = water.character;
                 }
             }
             //how long to wait until next loop
