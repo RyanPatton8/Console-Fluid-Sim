@@ -13,7 +13,7 @@ class Program
     static public char[,] grid = {{},{}};
     //water variables
     static public int waterAmount = 1000;//how much water to drop
-    static private int waterSpeed = 0;//how long it should wait to loop (effectively how fast the water moves)
+    static private int flowRate = 0;//how long it should wait to loop (effectively how fast the water moves)
     static public List<Object> waterList = new List<Object>();//list to hold and loop through all instances of water
 
     public static void Simulate()
@@ -86,14 +86,16 @@ class Program
                 }
             }
             //how long to wait until next loop
-            Thread.Sleep(waterSpeed);  
+            Thread.Sleep(flowRate);  
         }
     }
+
     static private void SetFlowRate()
     {
         int potentialRate = 30 - (waterAmount / 100);
+
         if(potentialRate > 0){
-            waterSpeed = potentialRate;
+            flowRate = potentialRate;
         }
     }
 
@@ -104,39 +106,10 @@ class Program
         Console.CursorVisible = false;
 
         grid = new char[width, height];
-        
-        for (int i = 0; i < width - 1; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if(j == height - 1) {
-                    Console.SetCursorPosition(i,j);
-                    Console.Write('-');
-                    grid[i,j] = '-';
-                }else if (i == width - 2 || i == 0) {
-                    Console.SetCursorPosition(i,j);
-                    Console.Write('-');
-                    grid[i,j] = '-';
-                }else if((j == height - 2 ||j == height - 3 ||j == height - 4) && (i == 35 || i == 85)){
-                    Console.SetCursorPosition(i,j);
-                    Console.Write('-');
-                    grid[i,j] = '-';
-                }else {
-                    Console.SetCursorPosition(i,j);
-                    Console.Write(' ');
-                    grid[i,j] = ' ';
-                } 
-            }
-        }
 
-        for (int i = 1; i < 14; i++){
-            Console.SetCursorPosition(40 + i,11 + i);
-            Console.Write('-');
-            grid[40 + i,11 + i] = '-';
-            Console.SetCursorPosition(41 + i,11 + i);
-            Console.Write('-');
-            grid[41 + i,11 + i] = '-';
-        }
+        Scene.BlankCanvas(width,height);
+        Scene.SteepSlopeR(40,12);
+        Scene.SteepSlopeL(62,2);
 
         // create a list of instantiated water objects
         for(int i = waterAmount; i > 0; i--){

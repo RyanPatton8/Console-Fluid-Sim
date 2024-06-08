@@ -11,6 +11,7 @@ class Water
     //takes in the characters around itself and makes a decision on what to do
     public string Move(char below, char left, char right, char bLeft, char bRight)
     {
+        //vertical and diagonal
         if (below == ' ' && bLeft == ' ' && bRight == ' ') {
             Random rand = new Random();
             if(rand.Next(0, 3) == 0) {
@@ -78,7 +79,6 @@ class Water
             return "right";
         }
         
-        return "stay";
-          
+        return "stay";   
     }
 }
