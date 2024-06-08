@@ -1,4 +1,4 @@
-                                  Using a basic set of rules to produce complicated results
+Using a basic set of rules to produce complicated results
 
 
 
