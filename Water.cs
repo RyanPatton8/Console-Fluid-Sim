@@ -7,9 +7,11 @@ class Water
     //store waters global position
     public int positionX = 50;
     public int positionY = 2;
+    //overflow boolean to determine whether or not to try to overflow
+    public bool allowOverFlow = false;
 
     //takes in the characters around itself and makes a decision on what to do
-    public string Move(char below, char left, char right, char bLeft, char bRight)
+    public string Move(char below, char left, char right, char bLeft, char bRight, char tLeft, char tRight, char above)
     {
         //vertical and diagonal
         if (below == ' ' && bLeft == ' ' && bRight == ' ') {
@@ -42,10 +44,12 @@ class Water
                 return "bottomRight";
             }
         }
+        
         //vertical
         else if(below == ' '){
             return "below";
         }
+
         //diagonal
         else if (bLeft == ' ' && bRight == ' ') {
             Random rand = new Random();
@@ -61,7 +65,23 @@ class Water
         } 
         else if (bRight == ' ') {
             return "bottomRight";
-        }   
+        }
+
+        //up diagonal for overflow (Experimental)
+        if(allowOverFlow)
+        {
+            if (below == '-' && bLeft == character && left == character && right == '-' && tRight == ' ' && allowOverFlow)
+            {
+                allowOverFlow = false;
+                return "topright";
+            }
+            else if (below == '-' && bRight == character && right == character && left == '-' && tLeft == ' ' && allowOverFlow)
+            {
+                allowOverFlow = false;
+                return "topleft";
+            }   
+        }
+
         //horizontal
         else if (left == ' ' && right == ' ') {
             Random rand = new Random();
@@ -77,8 +97,13 @@ class Water
         } 
         else if (right == ' ') {      
             return "right";
-        }
+        }  
         
         return "stay";   
+    }
+
+    public void OnOverFlowed(object sender, EventArgs e)
+    {
+
     }
 }
