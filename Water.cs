@@ -44,7 +44,7 @@ class Water
                 return "bottomRight";
             }
         }
-        
+
         //vertical
         else if(below == ' '){
             return "below";
@@ -65,6 +65,12 @@ class Water
         } 
         else if (bRight == ' ') {
             return "bottomRight";
+        }
+
+        //check if needs to make another water overflow
+        if (bLeft == character && below == character && bRight == character && right == '-' && left == character && above == character)
+        {
+            return "tryOverFlow";
         }
 
         //up diagonal for overflow (Experimental)
@@ -102,8 +108,10 @@ class Water
         return "stay";   
     }
 
-    public void OnOverFlowed(object sender, EventArgs e)
+    public void OnOverFlowed(object sender, OverFlowEventArgs e)
     {
-
+        if(e.xPosition == positionX && e.yPosition == positionY){
+            allowOverFlow = true;
+        }
     }
 }

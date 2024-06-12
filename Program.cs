@@ -117,7 +117,10 @@ class Program
                 }
                 else if (direction == "tryOverFlow")
                 {
-                    overFlowPublisher.CallEvent();
+
+                    int xPos = water.positionX + 12;
+                    int yPos = water.positionY + 1;
+                    overFlowPublisher.CallEvent(xPos, yPos);
                 }
             }
             //how long to wait until next loop

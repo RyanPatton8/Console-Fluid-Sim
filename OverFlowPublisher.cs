@@ -1,19 +1,26 @@
+public class OverFlowEventArgs : EventArgs
+{
+    public int xPosition { get; set; }
+    public int yPosition { get; set; }
+}
+
 public class OverFlowPublisher
 {
-    public delegate void OverFlowedEventHandler(object sender, EventArgs e);
-    
-    public event OverFlowedEventHandler OverFlowed;
+    public EventHandler<OverFlowEventArgs> OverFlowed;
 
-    public void CallEvent()
+    public void CallEvent(int desiredX, int desiredY)
     {
-        OnOverFlowed();
+        OnOverFlowed(desiredX, desiredY);
     }
 
-    protected virtual void OnOverFlowed()
+    protected virtual void OnOverFlowed(int desiredX, int desiredY)
     {
         if (OverFlowed != null)
         {
-            OverFlowed(this, EventArgs.Empty);
+            OverFlowed(this, new OverFlowEventArgs() {
+                xPosition = desiredX,
+                yPosition = desiredY
+            });
         }
     }
 }
