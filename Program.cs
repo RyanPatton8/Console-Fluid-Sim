@@ -117,9 +117,9 @@ class Program
                 }
                 else if (direction == "tryOverFlow")
                 {
-
-                    int xPos = water.positionX + 12;
-                    int yPos = water.positionY + 1;
+                    int[] moveableWater = water.FindWaterForOverFlow(); 
+                    int xPos = water.positionX + moveableWater[0];
+                    int yPos = water.positionY + moveableWater[1];
                     overFlowPublisher.CallEvent(xPos, yPos);
                 }
             }

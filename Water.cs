@@ -13,6 +13,21 @@ class Water
     //takes in the characters around itself and makes a decision on what to do
     public string Move(char below, char left, char right, char bLeft, char bRight, char tLeft, char tRight, char above)
     {
+        //up diagonal for overflow (Experimental)
+        if(allowOverFlow)
+        {
+            if (tRight == ' ')
+            {
+                allowOverFlow = false;
+                return "topright";
+            }
+            // else if (bRight == character && right == character && tLeft == ' ' && allowOverFlow)
+            // {
+            //     allowOverFlow = false;
+            //     return "topleft";
+            // }
+        }
+        
         //vertical and diagonal
         if (below == ' ' && bLeft == ' ' && bRight == ' ') {
             Random rand = new Random();
@@ -73,20 +88,7 @@ class Water
             return "tryOverFlow";
         }
 
-        //up diagonal for overflow (Experimental)
-        if(allowOverFlow)
-        {
-            if (below == '-' && bLeft == character && left == character && right == '-' && tRight == ' ' && allowOverFlow)
-            {
-                allowOverFlow = false;
-                return "topright";
-            }
-            else if (below == '-' && bRight == character && right == character && left == '-' && tLeft == ' ' && allowOverFlow)
-            {
-                allowOverFlow = false;
-                return "topleft";
-            }   
-        }
+        
 
         //horizontal
         else if (left == ' ' && right == ' ') {
@@ -106,6 +108,54 @@ class Water
         }  
         
         return "stay";   
+    }
+
+//maybe check recursively using the event if it logically could overflow starting from current position and spreading locally around it?
+
+//maybe create static method to check for a space withing range of 5x - 2y that makes sense to overflow using logic similar to move method?
+
+    //check the six to the right and six to left same as move method choose the one that makes sense
+    public int[] FindWaterForOverFlow()
+    {   
+        //check if adjacent 3 around wall on right side are all water
+        if(Program.grid[positionX + 5, positionY] == '0' &&
+            Program.grid[positionX + 4, positionY] == '0' &&
+            Program.grid[positionX + 3, positionY] == '0' )
+        {
+            //choose closest water to the wall
+            if (Program.grid[positionX + 3, positionY - 1] == ' ')
+            {
+                return [3,0];
+            }
+            else if(Program.grid[positionX + 4, positionY - 1] == ' ')
+            {
+                return [4,0];
+            }
+            else if(Program.grid[positionX + 5, positionY - 1] == ' ')
+            {
+                return [5,0];
+            }
+        }
+        //check if adjacent 3 around wall on right side are all water one row down
+        else if (Program.grid[positionX + 5, positionY + 1] == '0' &&
+                Program.grid[positionX + 4, positionY + 1] == '0' &&
+                Program.grid[positionX + 3, positionY + 1] == '0' )
+        {
+            if (Program.grid[positionX + 3, positionY] == ' ')
+            {
+                return [3,1];
+            }
+            else if(Program.grid[positionX + 4, positionY] == ' ')
+            {
+                return [4,1];
+            }
+            else if(Program.grid[positionX + 5, positionY] == ' ')
+            {
+                return [5,1];
+            }
+        }
+
+        return [0,0];
     }
 
     public void OnOverFlowed(object sender, OverFlowEventArgs e)
