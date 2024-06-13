@@ -1,4 +1,5 @@
 using System;
+using System.Dynamic;
 
 class Water 
 {
@@ -8,17 +9,19 @@ class Water
     public int positionX = 50;
     public int positionY = 2;
     //overflow move direction
-    private string mDirection = "none";
+    public string mDirection = "none";
     
 
 
     //takes in the characters around itself and makes a decision on what to do
     public string Move(char below, char left, char right, char bLeft, char bRight, char tLeft, char tRight, char above)
     {
+        //standard
         if (character == '0'){
             return NotMerged(below, left, right, bLeft, bRight, above);
         }
-        else if (character == 'O' || character == '1'){
+        //overflowing
+        else if (character == 'O'){
             return Merged(below, left, right, bLeft, bRight, above);
         }
         else{
@@ -116,19 +119,22 @@ class Water
         {
             return "right";
         }
-        //make it overflow
-        else if (right == '-' && below == '0' && bRight == '0' && Program.grid[positionX + 4, positionY] != '0')
+
+        //if stuck and meets certain criteria try to go into other water and under an obstacle creating an overflow effect
+        else if (right == '-' && (below == '0' || below == 'O') && (bRight == '0' || bRight == 'O') && Program.grid[positionX + 4, positionY] != '0')
         {
             character = 'O';
             mDirection = "right";
             return "bottomRight";
         }
-        else if (left == '-' && below == '0' && bLeft == '0' && Program.grid[positionX - 4, positionY] != '0')
+
+        else if (left == '-' && (below == '0' || below == 'O') && (bLeft == '0' || bLeft == 'O') && Program.grid[positionX - 4, positionY] != '0' )
         {
             character = 'O';
             mDirection = "left";
             return "bottomLeft";
         }
+
         return "stay";
     }
 
@@ -145,6 +151,12 @@ class Water
             if (right != '-'){
                 return "right";
             }
+            else if (bRight != '-'){
+                return "bottomRight";
+            }
+            else if (below != '-'){
+                return "below";
+            }
             else {
                 mDirection = "left";
             }
@@ -153,10 +165,18 @@ class Water
             if (left != '-'){
                 return "left";
             }
+            else if (bLeft != '-'){
+                return "bottomLeft";
+            }
+            else if (below != '-'){
+                return "below";
+            }
             else{
                 mDirection = "right";
             }
         }
+        
+        character = '0';
         return "stay";
     }
 }

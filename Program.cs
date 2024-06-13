@@ -14,7 +14,7 @@ class Program
     //create a matrix to keep track of all characters in terminal
     static public char[,] grid = {{},{}};
     //water variables
-    static public int waterAmount = 500;//how much water to drop
+    static public int waterAmount = 1000;//how much water to drop
     static private int flowRate = 0;//how long it should wait to loop (effectively how fast the water moves)
     static public List<Object> waterList = new List<Object>();//list to hold and loop through all instances of water
 
@@ -31,7 +31,7 @@ class Program
                                               grid[water.positionX - 1, water.positionY - 1],   //top left
                                               grid[water.positionX + 1, water.positionY - 1],   //top right
                                               grid[water.positionX, water.positionY - 1]);      //above
-
+                //Standard
                 if (water.character == '0'){
                     if (direction == "below"){
                         Console.SetCursorPosition(water.positionX, water.positionY + 1);
@@ -68,30 +68,6 @@ class Program
                         water.positionX ++;
                         water.positionY ++;
                     }
-                    else if (direction == "topright"){
-                        Console.SetCursorPosition(water.positionX + 1, water.positionY - 2);
-                        Console.Write(water.character);
-                        grid[water.positionX + 1, water.positionY - 2] = water.character;
-
-                        Console.SetCursorPosition(water.positionX, water.positionY);
-                        Console.Write(' ');
-                        grid[water.positionX, water.positionY] = ' ';
-
-                        water.positionX ++;
-                        water.positionY -= 2;
-                    }
-                    else if (direction == "topleft"){
-                        Console.SetCursorPosition(water.positionX - 1, water.positionY - 1);
-                        Console.Write(water.character);
-                        grid[water.positionX - 1, water.positionY - 1] = water.character;
-
-                        Console.SetCursorPosition(water.positionX, water.positionY);
-                        Console.Write(' ');
-                        grid[water.positionX, water.positionY] = ' ';
-
-                        water.positionX --;
-                        water.positionY --;
-                    }
                     else if (direction == "left"){
                         Console.SetCursorPosition(water.positionX - 1, water.positionY);
                         Console.Write(water.character);
@@ -127,12 +103,20 @@ class Program
                     }
                 }
 
+                //OverFlow
                 else {
                     if (direction == "above"){
-                        Console.SetCursorPosition(water.positionX, water.positionY - 1);
-                        Console.Write(water.character);
-                        grid[water.positionX, water.positionY - 1] = water.character;
-
+                        if (water.mDirection == "right"){
+                            Console.SetCursorPosition(water.positionX, water.positionY - 1);
+                            Console.Write(water.character);
+                            grid[water.positionX, water.positionY - 1] = water.character; 
+                        }
+                        else{
+                            Console.SetCursorPosition(water.positionX, water.positionY - 1);
+                            Console.Write(water.character);
+                            grid[water.positionX, water.positionY - 1] = water.character; 
+                        }
+                        
                         Console.SetCursorPosition(water.positionX, water.positionY);
                         Console.Write('0');
                         grid[water.positionX, water.positionY] = '0';
@@ -187,6 +171,7 @@ class Program
                     }
                 }
             }
+            
             //how long to wait until next loop
             Thread.Sleep(flowRate);  
         }
@@ -210,9 +195,9 @@ class Program
         grid = new char[width, height];
 
         Scene.BlankCanvas(width,height);
-        Scene.SteepSlopeR(40,11);
-        Scene.SteepSlopeL(63,2);
-        Scene.SteepSlopeL(62,15);
+        Scene.SteepSlopeR(40,14);
+        Scene.SteepSlopeL(63,5);
+        Scene.SteepSlopeL(62,18);
 
         // create a list of instantiated water objects
         for(int i = waterAmount; i > 0; i--){
