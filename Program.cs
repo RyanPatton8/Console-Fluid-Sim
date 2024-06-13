@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading;
-using Microsoft.VisualBasic;
 
 
 // break the water into lists of 100
@@ -28,8 +27,6 @@ class Program
                                               grid[water.positionX + 1, water.positionY],       //right
                                               grid[water.positionX - 1, water.positionY + 1],   //bottom left
                                               grid[water.positionX + 1, water.positionY + 1],   //bottom right
-                                              grid[water.positionX - 1, water.positionY - 1],   //top left
-                                              grid[water.positionX + 1, water.positionY - 1],   //top right
                                               grid[water.positionX, water.positionY - 1]);      //above
                 //Standard
                 if (water.character == '0'){

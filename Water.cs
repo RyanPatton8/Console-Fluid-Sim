@@ -14,7 +14,7 @@ class Water
 
 
     //takes in the characters around itself and makes a decision on what to do
-    public string Move(char below, char left, char right, char bLeft, char bRight, char tLeft, char tRight, char above)
+    public string Move(char below, char left, char right, char bLeft, char bRight, char above)
     {
         //standard
         if (character == '0'){
@@ -99,6 +99,22 @@ class Water
         {
             return "bottomRight";
         }
+
+        //if stuck and meets certain criteria try to go into other water and under an obstacle creating an overflow effect
+        else if (right == '-' && (below == '0' || below == 'O') && (bRight == '0' || bRight == 'O') && Program.grid[positionX + 4, positionY] != '0')
+        {
+            character = 'O';
+            mDirection = "right";
+            return "bottomRight";
+        }
+
+        else if (left == '-' && (below == '0' || below == 'O') && (bLeft == '0' || bLeft == 'O') && Program.grid[positionX - 4, positionY] != '0' )
+        {
+            character = 'O';
+            mDirection = "left";
+            return "bottomLeft";
+        }
+        
         else if (left == ' ' && right == ' ')
         {
             Random rand = new Random();
@@ -120,20 +136,7 @@ class Water
             return "right";
         }
 
-        //if stuck and meets certain criteria try to go into other water and under an obstacle creating an overflow effect
-        else if (right == '-' && (below == '0' || below == 'O') && (bRight == '0' || bRight == 'O') && Program.grid[positionX + 4, positionY] != '0')
-        {
-            character = 'O';
-            mDirection = "right";
-            return "bottomRight";
-        }
-
-        else if (left == '-' && (below == '0' || below == 'O') && (bLeft == '0' || bLeft == 'O') && Program.grid[positionX - 4, positionY] != '0' )
-        {
-            character = 'O';
-            mDirection = "left";
-            return "bottomLeft";
-        }
+        
 
         return "stay";
     }

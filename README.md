@@ -1,5 +1,7 @@
 Using a basic set of rules to produce complicated results
 
+Recommended to navigate to File > Preferences > Settings > Terminal.integrated.fontsize and adjust it to be 6
+
 
 
 
