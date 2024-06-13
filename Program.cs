@@ -14,11 +14,9 @@ class Program
     //create a matrix to keep track of all characters in terminal
     static public char[,] grid = {{},{}};
     //water variables
-    static public int waterAmount = 200;//how much water to drop
+    static public int waterAmount = 500;//how much water to drop
     static private int flowRate = 0;//how long it should wait to loop (effectively how fast the water moves)
     static public List<Object> waterList = new List<Object>();//list to hold and loop through all instances of water
-    
-    static OverFlowPublisher overFlowPublisher = new OverFlowPublisher();
 
     public static void Simulate()
     {
@@ -34,93 +32,159 @@ class Program
                                               grid[water.positionX + 1, water.positionY - 1],   //top right
                                               grid[water.positionX, water.positionY - 1]);      //above
 
-                if (direction == "below"){
-                    Console.SetCursorPosition(water.positionX, water.positionY + 1);
-                    Console.Write(water.character);
-                    grid[water.positionX, water.positionY + 1] = water.character;
+                if (water.character == '0'){
+                    if (direction == "below"){
+                        Console.SetCursorPosition(water.positionX, water.positionY + 1);
+                        Console.Write(water.character);
+                        grid[water.positionX, water.positionY + 1] = water.character;
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
 
-                    water.positionY ++;
+                        water.positionY ++;
+                    }
+                    else if (direction == "bottomLeft"){
+                        Console.SetCursorPosition(water.positionX - 1, water.positionY + 1);
+                        Console.Write(water.character);
+                        grid[water.positionX - 1, water.positionY + 1] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
+
+                        water.positionX --;
+                        water.positionY ++;
+                    }
+                    else if (direction == "bottomRight"){
+                        Console.SetCursorPosition(water.positionX + 1, water.positionY + 1);
+                        Console.Write(water.character);
+                        grid[water.positionX + 1, water.positionY + 1] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
+
+                        water.positionX ++;
+                        water.positionY ++;
+                    }
+                    else if (direction == "topright"){
+                        Console.SetCursorPosition(water.positionX + 1, water.positionY - 2);
+                        Console.Write(water.character);
+                        grid[water.positionX + 1, water.positionY - 2] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
+
+                        water.positionX ++;
+                        water.positionY -= 2;
+                    }
+                    else if (direction == "topleft"){
+                        Console.SetCursorPosition(water.positionX - 1, water.positionY - 1);
+                        Console.Write(water.character);
+                        grid[water.positionX - 1, water.positionY - 1] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
+
+                        water.positionX --;
+                        water.positionY --;
+                    }
+                    else if (direction == "left"){
+                        Console.SetCursorPosition(water.positionX - 1, water.positionY);
+                        Console.Write(water.character);
+                        grid[water.positionX - 1, water.positionY] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
+
+                        water.positionX --;
+                    }
+                    else if (direction == "right"){
+                        Console.SetCursorPosition(water.positionX + 1, water.positionY);
+                        Console.Write(water.character);
+                        grid[water.positionX + 1, water.positionY] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
+
+                        water.positionX ++;
+                    }
+                    if (direction == "above"){
+                        Console.SetCursorPosition(water.positionX, water.positionY - 1);
+                        Console.Write(water.character);
+                        grid[water.positionX, water.positionY - 1] = water.character;
+
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write('0');
+                        grid[water.positionX, water.positionY] = '0';
+
+                        water.positionY --;
+                    }
                 }
-                else if (direction == "bottomLeft"){
-                    Console.SetCursorPosition(water.positionX - 1, water.positionY + 1);
-                    Console.Write(water.character);
-                    grid[water.positionX - 1, water.positionY + 1] = water.character;
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
+                else {
+                    if (direction == "above"){
+                        Console.SetCursorPosition(water.positionX, water.positionY - 1);
+                        Console.Write(water.character);
+                        grid[water.positionX, water.positionY - 1] = water.character;
 
-                    water.positionX --;
-                    water.positionY ++;
-                }
-                else if (direction == "bottomRight"){
-                    Console.SetCursorPosition(water.positionX + 1, water.positionY + 1);
-                    Console.Write(water.character);
-                    grid[water.positionX + 1, water.positionY + 1] = water.character;
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write('0');
+                        grid[water.positionX, water.positionY] = '0';
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
+                        water.positionY --;
+                    }
+                    else if (direction == "bottomLeft"){
+                        Console.SetCursorPosition(water.positionX - 1, water.positionY + 1);
+                        Console.Write(water.character);
+                        grid[water.positionX - 1, water.positionY + 1] = water.character;
 
-                    water.positionX ++;
-                    water.positionY ++;
-                }
-                else if (direction == "topright"){
-                    Console.SetCursorPosition(water.positionX + 1, water.positionY - 1);
-                    Console.Write(water.character);
-                    grid[water.positionX + 1, water.positionY - 1] = water.character;
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
+                        water.positionX --;
+                        water.positionY ++;
+                    }
+                    else if (direction == "bottomRight"){
+                        Console.SetCursorPosition(water.positionX + 1, water.positionY + 1);
+                        Console.Write(water.character);
+                        grid[water.positionX + 1, water.positionY + 1] = water.character;
 
-                    water.positionX ++;
-                    water.positionY --;
-                }
-                else if (direction == "topleft"){
-                    Console.SetCursorPosition(water.positionX - 1, water.positionY - 1);
-                    Console.Write(water.character);
-                    grid[water.positionX - 1, water.positionY - 1] = water.character;
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write(' ');
+                        grid[water.positionX, water.positionY] = ' ';
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
+                        water.positionX ++;
+                        water.positionY ++;
+                    }
+                    else if (direction == "right"){
+                        Console.SetCursorPosition(water.positionX + 1, water.positionY);
+                        Console.Write(water.character);
+                        grid[water.positionX + 1, water.positionY] = water.character;
 
-                    water.positionX --;
-                    water.positionY --;
-                }
-                else if (direction == "left"){
-                    Console.SetCursorPosition(water.positionX - 1, water.positionY);
-                    Console.Write(water.character);
-                    grid[water.positionX - 1, water.positionY] = water.character;
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write('0');
+                        grid[water.positionX, water.positionY] = '0';
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
+                        water.positionX ++;
+                    }
+                    else if (direction == "left"){
+                        Console.SetCursorPosition(water.positionX - 1, water.positionY);
+                        Console.Write(water.character);
+                        grid[water.positionX - 1, water.positionY] = water.character;
 
-                    water.positionX --;
-                }
-                else if (direction == "right"){
-                    Console.SetCursorPosition(water.positionX + 1, water.positionY);
-                    Console.Write(water.character);
-                    grid[water.positionX + 1, water.positionY] = water.character;
+                        Console.SetCursorPosition(water.positionX, water.positionY);
+                        Console.Write('0');
+                        grid[water.positionX, water.positionY] = '0';
 
-                    Console.SetCursorPosition(water.positionX, water.positionY);
-                    Console.Write(' ');
-                    grid[water.positionX, water.positionY] = ' ';
-
-                    water.positionX ++;
-                }
-                else if (direction == "tryOverFlow")
-                {
-                    int[] moveableWater = water.FindWaterForOverFlow(); 
-                    int xPos = water.positionX + moveableWater[0];
-                    int yPos = water.positionY + moveableWater[1];
-                    overFlowPublisher.CallEvent(xPos, yPos);
+                        water.positionX --;
+                    }
                 }
             }
             //how long to wait until next loop
@@ -146,15 +210,15 @@ class Program
         grid = new char[width, height];
 
         Scene.BlankCanvas(width,height);
-        Scene.SteepSlopeR(40,13);
-        Scene.SteepSlopeL(62,3);
-        Scene.SteepSlopeL(62,16);
+        Scene.SteepSlopeR(40,11);
+        Scene.SteepSlopeL(63,2);
+        Scene.SteepSlopeL(62,15);
 
         // create a list of instantiated water objects
         for(int i = waterAmount; i > 0; i--){
             Water water = new Water();
             waterList.Add(water);
-            overFlowPublisher.OverFlowed += water.OnOverFlowed;
+            // overFlowPublisher.OverFlowed += water.OnOverFlowed;
         }
 
         SetFlowRate();

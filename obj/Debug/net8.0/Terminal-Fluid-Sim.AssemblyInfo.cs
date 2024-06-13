@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Terminal-Fluid-Sim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d331125f405b9f730d48cb98f1c6fadf0afec93")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6dc4241503d45642a78f435d9ff6f6993739842")]
 [assembly: System.Reflection.AssemblyProductAttribute("Terminal-Fluid-Sim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Terminal-Fluid-Sim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
