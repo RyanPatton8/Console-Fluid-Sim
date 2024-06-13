@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Personal Projects\\Terminal-Fluid-Sim\\Console-Fluid-Sim.csproj": {}
+    "D:\\Personal Projects\\Console-Fluid-Sim\\Console-Fluid-Sim.csproj": {}
   },
   "projects": {
-    "D:\\Personal Projects\\Terminal-Fluid-Sim\\Console-Fluid-Sim.csproj": {
+    "D:\\Personal Projects\\Console-Fluid-Sim\\Console-Fluid-Sim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personal Projects\\Terminal-Fluid-Sim\\Console-Fluid-Sim.csproj",
+        "projectUniqueName": "D:\\Personal Projects\\Console-Fluid-Sim\\Console-Fluid-Sim.csproj",
         "projectName": "Console-Fluid-Sim",
-        "projectPath": "D:\\Personal Projects\\Terminal-Fluid-Sim\\Console-Fluid-Sim.csproj",
+        "projectPath": "D:\\Personal Projects\\Console-Fluid-Sim\\Console-Fluid-Sim.csproj",
         "packagesPath": "C:\\Users\\42far\\.nuget\\packages\\",
-        "outputPath": "D:\\Personal Projects\\Terminal-Fluid-Sim\\obj\\",
+        "outputPath": "D:\\Personal Projects\\Console-Fluid-Sim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\42far\\AppData\\Roaming\\NuGet\\NuGet.Config"
