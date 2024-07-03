@@ -29,12 +29,13 @@ class Shapes{
         for (int i = 0; i < 11; i++){
             if (i + startY > Program.height - 1)
                 break;
-            Console.SetCursorPosition(startX + i,startY + i);
+            Console.SetCursorPosition(startX + i, startY + i);
             Console.Write('-');
-            Program.grid[startX + i,startY + i] = '-';
-            Console.SetCursorPosition(startX + i + 1,startY + i);
+            Program.grid[startX + i, startY + i] = '-';
+
+            Console.SetCursorPosition(startX + i + 1, startY + i);
             Console.Write('-');
-            Program.grid[startX + i + 1,startY + i] = '-';
+            Program.grid[startX + i + 1, startY + i] = '-';
         }
     }
 
@@ -44,12 +45,80 @@ class Shapes{
         for (int i = 0; i < 11; i++){
             if (i + startY > Program.height - 1)
                 break;
-            Console.SetCursorPosition(startX - i,startY + i);
+            Console.SetCursorPosition(startX - i, startY + i);
             Console.Write('-');
-            Program.grid[startX - i,startY + i] = '-';
-            Console.SetCursorPosition(startX - i - 1,startY + i);
+            Program.grid[startX - i, startY + i] = '-';
+
+            Console.SetCursorPosition(startX - i - 1, startY + i);
             Console.Write('-');
-            Program.grid[startX - i - 1,startY + i] = '-';
+            Program.grid[startX - i - 1, startY + i] = '-';
+        }
+    }
+
+    public static void GentleSlopeR(int startX, int startY)
+    {
+        int xIncrement = 0;
+
+        for (int i = 0; i < 11; i++){
+            if (i + startY > Program.height - 1)
+                break;
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+            xIncrement++;
+
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+            xIncrement++;
+
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+            xIncrement++;
+
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+        }
+    }
+
+    public static void GentleSlopeL(int startX, int startY)
+    {
+        int xIncrement = 0;
+
+        for (int i = 0; i < 11; i++){
+            if (i + startY > Program.height - 1)
+                break;
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+            xIncrement--;
+
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+            xIncrement--;
+
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+            xIncrement--;
+
+            Console.SetCursorPosition(startX + xIncrement, startY + i);
+            Console.Write('-');
+            Program.grid[startX + xIncrement, startY + i] = '-';
+        }
+    }
+
+    public static void Platform(int startX, int startY)
+    {
+        for (int i = 0; i < 30; i++){
+            if (startY > Program.height - 1)
+                break;
+            Console.SetCursorPosition(startX + i, startY);
+            Console.Write('-');
+            Program.grid[startX + i, startY ] = '-';
         }
     }
 }

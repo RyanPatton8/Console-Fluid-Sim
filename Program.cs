@@ -120,15 +120,17 @@ class Program
         grid = new char[width, height];
 
         // create a list of instantiated water objects
+        waterList.Clear();
         for(int i = waterAmount; i > 0; i--){
             Water water = new Water();
             waterList.Add(water);
         }
+        
         //ensure the speed at which it loops is relatively the same regardless of the amount of water
-        int potentialRate = 30 - (waterAmount / 100);
+        flowRate = 30 - (waterAmount / 100);
 
-        if(potentialRate > 0){
-            flowRate = potentialRate;
+        if(flowRate < 0){
+            flowRate = 0;
         }
     }
 
