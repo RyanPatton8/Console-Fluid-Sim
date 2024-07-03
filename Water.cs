@@ -8,28 +8,9 @@ class Water
     //store waters global position
     public int positionX = 50;
     public int positionY = 2;
-    //overflow move direction
-    public string mDirection = "none";
     
-
-
     //takes in the characters around itself and makes a decision on what to do
-    public string Move(char below, char left, char right, char bLeft, char bRight, char above)
-    {
-        //standard
-        if (character == '0'){
-            return NotMerged(below, left, right, bLeft, bRight, above);
-        }
-        //overflowing
-        else if (character == 'O'){
-            return Merged(below, left, right, bLeft, bRight, above);
-        }
-        else{
-            return "stay";
-        }
-    }
-
-    private string NotMerged(char below, char left, char right, char bLeft, char bRight, char above)
+    public string Move(char below, char left, char right, char bLeft, char bRight)
     {
         if (below == ' ' && bLeft == ' ' && bRight == ' ')
         {
@@ -100,21 +81,6 @@ class Water
             return "bottomRight";
         }
 
-        //if stuck and meets certain criteria try to go into other water and under an obstacle creating an overflow effect
-        else if (right == '-' && (below == '0' || below == 'O') && (bRight == '0' || bRight == 'O') && Program.grid[positionX + 4, positionY] != '0')
-        {
-            character = 'O';
-            mDirection = "right";
-            return "bottomRight";
-        }
-
-        else if (left == '-' && (below == '0' || below == 'O') && (bLeft == '0' || bLeft == 'O') && Program.grid[positionX - 4, positionY] != '0' )
-        {
-            character = 'O';
-            mDirection = "left";
-            return "bottomLeft";
-        }
-        
         else if (left == ' ' && right == ' ')
         {
             Random rand = new Random();
@@ -136,50 +102,6 @@ class Water
             return "right";
         }
 
-        
-
-        return "stay";
-    }
-
-    private string Merged(char below, char left, char right, char bLeft, char bRight, char above)
-    {
-        if (above == ' ') {
-            character = '0';
-            return "above";
-        }
-        else if (above == '0'){
-            return "above";
-        }
-        else if (mDirection == "right"){
-            if (right != '-'){
-                return "right";
-            }
-            else if (bRight != '-'){
-                return "bottomRight";
-            }
-            else if (below != '-'){
-                return "below";
-            }
-            else {
-                mDirection = "left";
-            }
-        }
-        else if (mDirection == "left"){
-            if (left != '-'){
-                return "left";
-            }
-            else if (bLeft != '-'){
-                return "bottomLeft";
-            }
-            else if (below != '-'){
-                return "below";
-            }
-            else{
-                mDirection = "right";
-            }
-        }
-        
-        character = '0';
         return "stay";
     }
 }
