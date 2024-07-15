@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Console-Fluid-Sim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+664a7c0894eff514bb21869eeefc22bdc9427e1a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c86fb47525312fead8d4009e19884b0f59335da")]
 [assembly: System.Reflection.AssemblyProductAttribute("Console-Fluid-Sim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Console-Fluid-Sim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

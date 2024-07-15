@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Personal Projects\\Console-Fluid-Sim\\Console-Fluid-Sim.csproj",
         "projectName": "Console-Fluid-Sim",
         "projectPath": "D:\\Personal Projects\\Console-Fluid-Sim\\Console-Fluid-Sim.csproj",
-        "packagesPath": "C:\\Users\\42far\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\therh\\.nuget\\packages\\",
         "outputPath": "D:\\Personal Projects\\Console-Fluid-Sim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\42far\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\therh\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
