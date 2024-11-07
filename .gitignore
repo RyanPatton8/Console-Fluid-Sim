@@ -1,0 +1,47 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code settings
+.vscode/
+
+# Rider project settings
+.idea/
+*.sln.iml
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# Visual Studio
+.vs/
+
+# Other config
+appsettings*.json
+*.dotCover
+
+# Additional caches
+**/*.rspec.cache
